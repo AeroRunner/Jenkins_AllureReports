@@ -28,37 +28,37 @@ public class RegitrationPageTest extends BaseTest {
         step("Remove Banner", () -> {
             regPage.removeBanner();
         });
-        step("Enter Name", () -> {
+        step("Enter Name 'Dmitrii'", () -> {
             regPage.setFirstName(data.name);
         });
-        step("Enter LastName", () -> {
+        step("Enter LastName 'Elizarov'", () -> {
             regPage.setLastName(data.lastName);
         });
-        step("Enter Email", () -> {
+        step("Enter Email 'airplay1x6@gmail.com'", () -> {
             regPage.setEmail(data.email);
         });
         step("Choise Gender", () -> {
             regPage.choiceGender(data.gender);
         });
-        step("Enter Phone Number", () -> {
+        step("Enter Phone Number '8888888888'", () -> {
             regPage.setUserNumber(data.number);
         });
-        step("Enter Date of Birth(day,month,year)", () -> {
+        step("Enter Date of Birth(day(29),month(December),year(1999))", () -> {
             regPage.choiceDateOfBirth(data.birthDay, data.birthMonth, data.birthYear);
         });
-        step("Choise Subject", () -> {
+        step("Choise Subject 'Arts'", () -> {
             regPage.setSubj(data.arts);
         });
-        step("Enter Hobby", () -> {
+        step("Enter Hobby 'Sports", () -> {
             regPage.choiceHobby(data.sports);
         });
         step("Upload test image (testimage.png)", () -> {
             regPage.uploadImage(data.testImg);
         });
-        step("Enter current address", () -> {
+        step("Enter current address 'Krajiska 87'", () -> {
             regPage.setCurrAddress(data.currAddress);
         });
-        step("Choise State and City", () -> {
+        step("Choise State (Uttar Pradesh) and City (Agra)", () -> {
             regPage.choiceStateCity(data.state, data.city);
         });
         step("Click button 'Submit", () -> {
