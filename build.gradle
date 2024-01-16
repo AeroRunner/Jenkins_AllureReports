@@ -46,9 +46,9 @@ test {
             }
         }
     }
-    task simple_test(type: Test) {
+    task regPage(type: Test) {
         useJUnitPlatform {
-            includeTags("simple")
+            includeTags("registrationPage")
         }
 
     }
