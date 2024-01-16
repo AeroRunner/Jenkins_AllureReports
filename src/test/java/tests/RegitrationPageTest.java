@@ -19,7 +19,7 @@ public class RegitrationPageTest extends BaseTest {
 
     @DisplayName("Full Registration Page Test: Filing and Check Result Form")
     @Test
-    @Tag("simple")
+    @Tag("registrationPage")
     public void filingAndCheckResultRegistrationPageTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Open Registration Page", () -> {
@@ -64,8 +64,6 @@ public class RegitrationPageTest extends BaseTest {
         step("Click button 'Submit", () -> {
             regPage.clickSubmit();
         });
-
-
         step("Check modal results after click 'Submit'", () -> {
             resModal.verifyModalAppeared();
             resModal.checkResult(resModal.graphName, resModal.fullName);
@@ -82,30 +80,62 @@ public class RegitrationPageTest extends BaseTest {
 
     }
 
-    @DisplayName("Registration Page required fields test")
+    @DisplayName("Registration Page only required fields test")
     @Test
-    @Tag("simple")
+    @Tag("registrationPage")
     public void filingRequiredFieldsRegistrPage() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-        regPage.openFormPage();
-        regPage.removeBanner();
-        regPage.setFirstName(data.name);
-        regPage.setLastName(data.lastName);
-        regPage.choiceGender(data.gender);
-        regPage.setUserNumber(data.number);
+        step("Open Registration Page", () -> {
+            regPage.openFormPage();
+        });
+        step("Remove Banner", () -> {
+            regPage.removeBanner();
+        });
+        step("Enter Name 'Dmitrii'", () -> {
+            regPage.setFirstName(data.name);
+        });
+        step("Enter LastName 'Elizarov'", () -> {
+            regPage.setLastName(data.lastName);
+        });
+        step("Choise Gender", () -> {
+            regPage.choiceGender(data.gender);
+        });
+        step("Enter Phone Number '8888888888'", () -> {
+            regPage.setUserNumber(data.number);
+        });
+        step("Click button 'Submit", () -> {
+            regPage.clickSubmit();
+        });
+        step("Check modal results after click 'Submit'", () -> {
+            resModal.verifyModalAppeared();
+            resModal.checkResult(resModal.graphName, resModal.fullName);
+            resModal.checkResult(resModal.graphGender, data.gender);
+            resModal.checkResult(resModal.graphMobile, data.number);
+        });
+
+
     }
 
-    @DisplayName("Registration Page Negative Tests")
+    @DisplayName("Registration Page Negative Tests: " +
+    "The modal window should not be displayed until the required fields are filled in ")
     @Test
-    @Tag("simple")
+    @Tag("registrationPage")
     public void requiredFieldsNegativeTests() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-        regPage.openFormPage();
-        regPage.removeBanner();
-        regPage.setFirstName(data.name);
-        regPage.clickSubmit();
-        regPage.checkTableHidden();
-
-
+        step("Open Registration Page", () -> {
+            regPage.openFormPage();
+        });
+        step("Remove Banner", () -> {
+            regPage.removeBanner();
+        });
+        step("Enter Name 'Dmitrii'", () -> {
+            regPage.setFirstName(data.name);
+        });
+        step("Click button 'Submit", () -> {
+            regPage.clickSubmit();
+        });
+        step("Modal window shouldn't appear", ()->{
+            regPage.checkTableHidden();
+        } );
     }
 }
