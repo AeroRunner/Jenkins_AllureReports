@@ -9,6 +9,8 @@ import pages.RegistrationPage;
 import utils.UserData;
 import utils.ResultModal;
 
+import static io.qameta.allure.Allure.step;
+
 @DisplayName("Registration Page Tests")
 public class RegitrationPageTest extends BaseTest {
     RegistrationPage regPage = new RegistrationPage();
@@ -20,7 +22,9 @@ public class RegitrationPageTest extends BaseTest {
     @Tag("simple")
     public void filingAndCheckResultRegistrationPageTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-        regPage.openFormPage();
+        step("Open Refistration Page", ()->{
+            regPage.openFormPage();
+        });
         regPage.removeBanner();
         regPage.setFirstName(data.name);
         regPage.setLastName(data.lastName);
