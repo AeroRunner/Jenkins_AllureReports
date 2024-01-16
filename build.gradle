@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'org.gradle.test-retry' version '1.5.8'
+    id "io.qameta.allure" version '2.11.2'
+}
+
+group = 'org.aerorunner'
+version = '1.0-SNAPSHOT'
+allure {
+    report {
+        version.set("2.25.0")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.25.0")
+            }
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            'com.codeborne:selenide:7.0.2',
+            'org.junit.jupiter:junit-jupiter:5.10.1',
+            'org.slf4j:slf4j-simple:2.0.9',
+            'io.qameta.allure:allure-selenide:2.25.0')
+}
+
+test {
+    useJUnitPlatform()
+    retry{
+        failOnPassedAfterRetry = true
+        maxFailures = 20
+        maxRetries = 20
+    }
+    testLogging {
+        events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        exceptionFormat 'full'
+    }
+}
