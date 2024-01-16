@@ -22,34 +22,64 @@ public class RegitrationPageTest extends BaseTest {
     @Tag("simple")
     public void filingAndCheckResultRegistrationPageTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-        step("Open Refistration Page", ()->{
+        step("Open Registration Page", () -> {
             regPage.openFormPage();
         });
-        regPage.removeBanner();
-        regPage.setFirstName(data.name);
-        regPage.setLastName(data.lastName);
-        regPage.setEmail(data.email);
-        regPage.choiceGender(data.gender);
-        regPage.setUserNumber(data.number);
-        regPage.choiceDateOfBirth(data.birthDay, data.birthMonth, data.birthYear);
-        regPage.setSubj(data.arts);
-        regPage.choiceHobby(data.sports);
-        regPage.uploadImage(data.testImg);
-        regPage.setCurrAddress(data.currAddress);
-        regPage.choiceStateCity(data.state, data.city);
-        regPage.clickSubmit();
+        step("Remove Banner", () -> {
+            regPage.removeBanner();
+        });
+        step("Enter Name", () -> {
+            regPage.setFirstName(data.name);
+        });
+        step("Enter LastName", () -> {
+            regPage.setLastName(data.lastName);
+        });
+        step("Enter Email", () -> {
+            regPage.setEmail(data.email);
+        });
+        step("Choise Gender", () -> {
+            regPage.choiceGender(data.gender);
+        });
+        step("Enter Phone Number", () -> {
+            regPage.setUserNumber(data.number);
+        });
+        step("Enter Date of Birth(day,month,year)", () -> {
+            regPage.choiceDateOfBirth(data.birthDay, data.birthMonth, data.birthYear);
+        });
+        step("Choise Subject", () -> {
+            regPage.setSubj(data.arts);
+        });
+        step("Enter Hobby", () -> {
+            regPage.choiceHobby(data.sports);
+        });
+        step("Upload test image (testimage.png)", () -> {
+            regPage.uploadImage(data.testImg);
+        });
+        step("Enter current address", () -> {
+            regPage.setCurrAddress(data.currAddress);
+        });
+        step("Choise State and City", () -> {
+            regPage.choiceStateCity(data.state, data.city);
+        });
+        step("Click button 'Submit", () -> {
+            regPage.clickSubmit();
+        });
 
-        resModal.verifyModalAppeared();
-        resModal.checkResult(resModal.graphName, resModal.fullName);
-        resModal.checkResult(resModal.graphEmail, data.email);
-        resModal.checkResult(resModal.graphGender, data.gender);
-        resModal.checkResult(resModal.graphMobile, data.number);
-        resModal.checkResult(resModal.graphBorn, resModal.bornDate);
-        resModal.checkResult(resModal.graphSubj, data.arts);
-        resModal.checkResult(resModal.graphHobby, data.sports);
-        resModal.checkResult(resModal.graphPicture, data.testImg);
-        resModal.checkResult(resModal.graphAddress, data.currAddress);
-        resModal.checkResult(resModal.graphStateCity, resModal.stateAndCity);
+
+        step("Check modal results after click 'Submit'", () -> {
+            resModal.verifyModalAppeared();
+            resModal.checkResult(resModal.graphName, resModal.fullName);
+            resModal.checkResult(resModal.graphEmail, data.email);
+            resModal.checkResult(resModal.graphGender, data.gender);
+            resModal.checkResult(resModal.graphMobile, data.number);
+            resModal.checkResult(resModal.graphBorn, resModal.bornDate);
+            resModal.checkResult(resModal.graphSubj, data.arts);
+            resModal.checkResult(resModal.graphHobby, data.sports);
+            resModal.checkResult(resModal.graphPicture, data.testImg);
+            resModal.checkResult(resModal.graphAddress, data.currAddress);
+            resModal.checkResult(resModal.graphStateCity, resModal.stateAndCity);
+        });
+
     }
 
     @DisplayName("Registration Page required fields test")
