@@ -6,10 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import pages.UserData;
-import pages.components.ResultModal;
+import utils.UserData;
+import utils.ResultModal;
+
 @DisplayName("Registration Page Tests")
-public class RegitrationPageTest extends BaseTest{
+public class RegitrationPageTest extends BaseTest {
     RegistrationPage regPage = new RegistrationPage();
     ResultModal resModal = new ResultModal();
     UserData data = new UserData();
@@ -17,7 +18,7 @@ public class RegitrationPageTest extends BaseTest{
     @DisplayName("Full Registration Page Test: Filing and Check Result Form")
     @Test
     @Tag("simple")
-    public void filingAndCheckResultRegistrationPageTest(){
+    public void filingAndCheckResultRegistrationPageTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         regPage.openFormPage();
         regPage.removeBanner();
@@ -46,22 +47,24 @@ public class RegitrationPageTest extends BaseTest{
         resModal.checkResult(resModal.graphAddress, data.currAddress);
         resModal.checkResult(resModal.graphStateCity, resModal.stateAndCity);
     }
+
     @DisplayName("Registration Page required fields test")
     @Test
     @Tag("simple")
-    public void filingRequiredFieldsRegistrPage(){
+    public void filingRequiredFieldsRegistrPage() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-    regPage.openFormPage();
-    regPage.removeBanner();
-    regPage.setFirstName(data.name);
-    regPage.setLastName(data.lastName);
-    regPage.choiceGender(data.gender);
-    regPage.setUserNumber(data.number);
+        regPage.openFormPage();
+        regPage.removeBanner();
+        regPage.setFirstName(data.name);
+        regPage.setLastName(data.lastName);
+        regPage.choiceGender(data.gender);
+        regPage.setUserNumber(data.number);
     }
+
     @DisplayName("Registration Page Negative Tests")
     @Test
     @Tag("simple")
-    public void requiredFieldsNegativeTests(){
+    public void requiredFieldsNegativeTests() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         regPage.openFormPage();
         regPage.removeBanner();

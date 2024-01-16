@@ -34,14 +34,9 @@ dependencies {
             "io.qameta.allure:allure-selenide:2.25.0")
 }
 
-//test {
-//    useJUnitPlatform()
-//    retry {
-//        failOnPassedAfterRetry = true
-//        maxFailures = 20
-//        maxRetries = 20
-//    }
-//}
+test {
+    useJUnitPlatform()
+}
     tasks.withType(Test) {
         useJUnitPlatform()
         testLogging {

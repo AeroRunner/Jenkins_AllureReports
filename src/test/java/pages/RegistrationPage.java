@@ -22,16 +22,18 @@ public class RegistrationPage {
             addressInput = $("#currentAddress"),
             wrapperStateCity = $("#stateCity-wrapper"),
             addState = $("#state"),
-            addCity =$("#city"),
-            addSubmit =$("#submit"),
+            addCity = $("#city"),
+            addSubmit = $("#submit"),
             tableClass = $(".table-responsive");
 
     CalendarComponents calendarComponent = new CalendarComponents();
+
     public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
+
     public RegistrationPage openFormPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
@@ -39,64 +41,77 @@ public class RegistrationPage {
 
         return this;
     }
+
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
 
         return this;
     }
+
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
 
         return this;
     }
+
     public RegistrationPage setEmail(String value) {
         userEmailInput.setValue(value);
 
         return this;
     }
+
     public RegistrationPage choiceGender(String value) {
         genderWrapper.$(byText(value)).click();
 
         return this;
     }
+
     public RegistrationPage setUserNumber(String value) {
         userNumberInput.setValue(value);
 
         return this;
     }
+
     public RegistrationPage choiceDateOfBirth(String day, String month, String year) {
         calendarInput.click();
-        calendarComponent.setDate(day,month,year);
+        calendarComponent.setDate(day, month, year);
 
         return this;
     }
-    public RegistrationPage setSubj(String subj1){
+
+    public RegistrationPage setSubj(String subj1) {
         subjInput.setValue(subj1).pressEnter();
         return this;
     }
-    public RegistrationPage choiceHobby(String hobby1){
+
+    public RegistrationPage choiceHobby(String hobby1) {
         hobbyInput.$(byText(hobby1)).click();
         return this;
     }
-    public RegistrationPage uploadImage(String imageName){
+
+    public RegistrationPage uploadImage(String imageName) {
         uploadFile.uploadFromClasspath(imageName);
         return this;
     }
-    public RegistrationPage setCurrAddress(String curAddress){
+
+    public RegistrationPage setCurrAddress(String curAddress) {
         addressInput.setValue(curAddress);
         return this;
     }
-    public RegistrationPage choiceStateCity(String state, String city){
+
+    public RegistrationPage choiceStateCity(String state, String city) {
         addState.click();
         wrapperStateCity.$(byText(state)).click();
         addCity.click();
         wrapperStateCity.$(byText(city)).click();
         return this;
     }
-    public RegistrationPage clickSubmit(){
+
+    public RegistrationPage clickSubmit() {
         addSubmit.click();
         return this;
     }
+
     public RegistrationPage checkTableHidden() {
         tableClass.shouldBe(hidden);
         return this;
