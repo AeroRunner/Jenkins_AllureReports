@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import helpers.Attach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +32,7 @@ public class BaseTest {
     @AfterEach
     @DisplayName("After every test we need reboot browser")
     void afterEveryTest(){
+        Attach.screenshotAs("Last Screen");
         step("Close Browser", ()->{
             Selenide.closeWebDriver();
         });

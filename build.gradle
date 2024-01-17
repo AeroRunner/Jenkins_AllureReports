@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 def allureVersion = "2.21.0",
-selenideVersion = "6.19.1"
+    selenideVersion = "6.19.1"
 allure {
     report {
         version.set(allureVersion)
@@ -37,18 +37,18 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-    tasks.withType(Test) {
-        useJUnitPlatform()
-        testLogging {
-            lifecycle {
-                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
-                exceptionFormat 'full'
-            }
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        lifecycle {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            exceptionFormat 'full'
         }
     }
-    task regPage(type: Test) {
-        useJUnitPlatform {
-            includeTags("registrationPage")
-        }
+}
+task regPage(type: Test) {
+    useJUnitPlatform {
+        includeTags("registrationPage")
+    }
 
-    }
+}
