@@ -17,8 +17,8 @@ import static io.qameta.allure.Allure.step;
 
 
 public class BaseTest {
-    @BeforeAll
     @DisplayName("Set settings before start tests ")
+    @BeforeAll
     public static void setUP() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
@@ -44,9 +44,8 @@ public class BaseTest {
         Configuration.browserCapabilities = capabilities;
 
     }
-
+    @DisplayName("After every test")
     @AfterEach
-    @DisplayName("After every test we need reboot browser")
     void afterEveryTest() {
         Attach.screenshotAs("Last Screen");
         Attach.pageSource();
